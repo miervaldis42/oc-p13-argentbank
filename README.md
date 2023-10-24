@@ -1,72 +1,33 @@
-# Project #10 - Argent Bank API
+# OpenClassrooms - Project 13
 
-This codebase contains the code needed to run the backend for Argent Bank.
+## Table of Contents
 
-## Getting Started
+- [📖 Project](#-project)
+- [🧑‍💻 Stack](#-stack)
+- [🚀 Run the Project](#-run-the-project)
 
-### Prerequisites
+## 📖 Project
 
-Argent Bank uses the following tech stack:
+This project is the 13th project of OpenClassrooms JavaScript - React Developer Program.\
+The objective is using React, Redux & API calls to build the frontend of a real project.
 
-- [Node.js v12](https://nodejs.org/en/)
-- [MongoDB Community Server](https://www.mongodb.com/try/download/community)
+## 🧑‍💻 Stack
 
-Please make sure you have the right versions and download both packages. You can verify this by using the following commands in your terminal:
+Here is the stack used in the project :
 
-```bash
-# Check Node.js version
-node --version
+🌄 Back-end :
 
-# Check Mongo version
-mongo --version
-```
+- [Node](https://nodejs.org/en)
+- [Express](https://expressjs.com/)
+- [Axios](https://axios-http.com/docs/intro)
+- [MongoDB & MongoShell](https://www.mongodb.com/try/download/community)
+- [Mongoose](https://mongoosejs.com/)
+- [Swagger](https://swagger.io/)
 
-### Instructions
+## 🚀 Run the Project
 
-1. Fork this repo
-1. Clone the repo onto your computer
-1. Open a terminal window in the cloned project
-1. Run the following commands:
+To run the project :
 
-```bash
-# Install dependencies
-npm install
-
-# Start local dev server
-npm run dev:server
-
-# Populate database with two users
-npm run populate-db
-```
-
-Your server should now be running at http://locahost:3001 and you will now have two users in your MongoDB database!
-
-## Populated Database Data
-
-Once you run the `populate-db` script, you should have two users in your database:
-
-### Tony Stark
-
-- First Name: `Tony`
-- Last Name: `Stark`
-- Email: `tony@stark.com`
-- Password: `password123`
-
-### Steve Rogers
-
-- First Name: `Steve`,
-- Last Name: `Rogers`,
-- Email: `steve@rogers.com`,
-- Password: `password456`
-
-## API Documentation
-
-To learn more about how the API works, once you have started your local environment, you can visit: http://localhost:3001/api-docs
-
-## Design Assets
-
-Static HTML and CSS has been created for most of the site and is located in: `/designs`.
-
-For some of the dynamic features, like toggling user editing, there is a mock-up for it in `/designs/wireframes/edit-user-name.png`.
-
-And for the API model that you will be proposing for transactitons, the wireframe can be found in `/designs/wireframes/transactions.png`.
+1. Use `npm run dev-start` or `npm run start` in a terminal linked to the project folder
+2. In another terminal also linked to the project, type `npm run database-setup` to populate the database with some users
+3. **_🎉 Congrats ! The project is up and running !_**
