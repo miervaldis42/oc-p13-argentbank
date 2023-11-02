@@ -13,14 +13,20 @@
   ],
   "author": "miervaldis42",
   "license": "ISC",
-  "main": "",
+  "main": "./client/src/index.js",
   "scripts": {
+    "install-client": "cd ./client && npm i",
     "install-server": "cd ./server && npm i",
-    "install-all": "npm run install-server",
+    "install-all": "npm i && npm run install-server && npm run install-client",
     "database-setup": "cd ./server && npm run db:populate",
-    "dev-server": "cd ./server && npm run dev:server",
+    "server-dev": "cd ./server && npm run dev:server",
     "server": "cd ./server && npm run server",
-    "dev-start": "npm run install-all && npm run dev-server",
-    "start": "npm run install-all && npm run server"
+    "client": "cd ./client && npm start",
+    "start-dev": "npm run install-all && concurrently \"npm run server-dev\" \"npm run client\"",
+    "start": "npm run install-all && concurrently \"npm run server\" \"npm run client\""
+  },
+  "proxy": "http://localhost:3001",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
   }
 }
