@@ -28,6 +28,12 @@ Here is the stack used in the project :
 
 To run the project :
 
-1. Use `npm run dev-start` or `npm run start` in a terminal linked to the project folder
-2. In another terminal also linked to the project, type `npm run database-setup` to populate the database with some users
-3. **_🎉 Congrats ! The project is up and running !_**
+1. Use `npm run dev-start` or `npm run start` in a terminal linked to the project root folder
+2. After running the previous commands, the following will happen :
+
+   - React will open a tab with the website in it at `http://localhost:3000`
+   - Node server will be running at `http://localhost:3001`
+   - Swagger documentation can be seen at `http://localhost:3001/api-docs/`
+
+3. In another terminal _(linked to the root project too)_, type `npm run database-setup` to populate the database with some users
+4. **_🎉 Congrats ! The project is up and running !_**
