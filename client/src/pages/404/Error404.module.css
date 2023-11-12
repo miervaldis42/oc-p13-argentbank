@@ -1,0 +1,19 @@
+.title-404 {
+  font-size: 4rem;
+
+  margin-top: 0;
+  margin-bottom: 0.4em;
+}
+
+.bg-404 {
+  width: 100%;
+  height: 100vh;
+
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.backLink-404 {
+  font-weight: bold;
+  color: #2c3e50;
+}
