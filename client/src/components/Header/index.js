@@ -1,5 +1,5 @@
 // Imports
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 // Routing
 import routesList from "../../router/routesList";
@@ -10,9 +10,16 @@ import Logo from "../../assets/img/argentBankLogo.png";
 
 // Component
 function Navbar() {
+  const currentLocation = useLocation();
+
   return (
     <header className={styles["main-nav"]}>
-      <NavLink to={routesList.home} className={styles["main-nav-logo"]}>
+      <NavLink
+        to={
+          currentLocation.pathname !== routesList.home ? routesList.home : null
+        }
+        className={styles["main-nav-logo"]}
+      >
         <img
           className={styles["main-nav-logo-image"]}
           src={Logo}

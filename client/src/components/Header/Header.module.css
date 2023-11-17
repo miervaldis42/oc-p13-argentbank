@@ -6,12 +6,22 @@
 }
 
 .main-nav a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
   font-weight: bold;
   color: #2c3e50;
 }
 
+.main-nav a i {
+  font-size: 1.4em;
+  margin-right: 12px;
+}
+
 .main-nav a.router-link-exact-active {
   color: #42b983;
+  text-decoration: none;
 }
 
 .main-nav-logo {
@@ -34,11 +44,6 @@
 
 .main-nav-item:hover {
   text-decoration: underline;
-}
-
-.main-nav-item i {
-  font-size: 1.4em;
-  margin-right: 12px;
 }
 
 .sr-only {
