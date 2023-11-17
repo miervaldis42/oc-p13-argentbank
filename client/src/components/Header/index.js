@@ -1,6 +1,9 @@
 // Imports
 import { NavLink } from "react-router-dom";
 
+// Routing
+import routesList from "../../router/routesList";
+
 // Styling
 import styles from "./Header.module.css";
 import Logo from "../../assets/img/argentBankLogo.png";
@@ -9,7 +12,7 @@ import Logo from "../../assets/img/argentBankLogo.png";
 function Navbar() {
   return (
     <header className={styles["main-nav"]}>
-      <NavLink to="/" className={styles["main-nav-logo"]}>
+      <NavLink to={routesList.home} className={styles["main-nav-logo"]}>
         <img
           className={styles["main-nav-logo-image"]}
           src={Logo}
@@ -21,7 +24,7 @@ function Navbar() {
 
       <nav>
         <NavLink
-          to="/login"
+          to={routesList.login}
           className={({ isActive }) =>
             isActive
               ? styles["router-link-exact-active"]
