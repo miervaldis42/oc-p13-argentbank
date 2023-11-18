@@ -3,15 +3,16 @@ import { createSlice } from "@reduxjs/toolkit";
 
 // Initial State
 const initialState = {
-  lastname: "Payet",
-  firstname: "Dimitri",
+  firstname: null,
+  lastname: null,
+  isEditMode: false,
 };
 
 /*
     Slice
 */
 const userSlice = createSlice({
-  name: "userSlice", // store name
+  name: "userSlice",
   initialState,
   reducers: {
     resetUserState: (state) => Object.assign(state, initialState),
@@ -21,8 +22,12 @@ const userSlice = createSlice({
     setLastname: (state, action) => {
       state.lastname = action.payload;
     },
+    switchEditMode: (state, action) => {
+      state.isEditMode = action.payload;
+    },
   },
 });
 
-export const { setFirstname, setLastname } = userSlice.actions;
+export const { resetUserState, setFirstname, setLastname, switchEditMode } =
+  userSlice.actions;
 export const userReducer = userSlice.reducer;
