@@ -1,9 +1,15 @@
 // Imports
+import { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import routesList from "./routesList";
+
 // Redux
 import { useSelector, useDispatch } from "react-redux";
 import { setToken } from "../redux/authSlice";
+import { setFirstname, setLastname } from "../redux/userSlice";
+
+// Services
+import fetchApiCall from "../services/apiHandler";
 
 // Components
 import HomePage from "../pages/HomePage/index";
@@ -17,10 +23,27 @@ function App() {
 
   // Set token from the persistant one if the page is reloaded
   const isAuth = useSelector((state) => state.auth.isValid);
-  const token = localStorage.getItem("token");
-  if (!isAuth && token !== null && token.length > 0) {
-    dispatch(setToken(token));
+  const tokenFromStore = useSelector((state) => state.auth.token);
+  const tokenFromLocalStorage = localStorage.getItem("token");
+  if (
+    !isAuth &&
+    tokenFromLocalStorage !== null &&
+    tokenFromLocalStorage.length > 0
+  ) {
+    dispatch(setToken(tokenFromLocalStorage));
   }
+
+  // Fetch user info to populate the page
+  useEffect(() => {
+    const token = tokenFromLocalStorage ?? tokenFromStore;
+
+    if (token) {
+      fetchApiCall("getUserInfo", "/user/profile", token).then((data) => {
+        dispatch(setFirstname(data.body.firstName));
+        dispatch(setLastname(data.body.lastName));
+      });
+    }
+  }, [dispatch, tokenFromLocalStorage, tokenFromStore]);
 
   return (
     <Router>
