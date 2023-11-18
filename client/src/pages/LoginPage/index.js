@@ -5,6 +5,9 @@ import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import routesList from "../../router/routesList";
 
+// Services
+import fetchApiCall from "../../services/apiHandler";
+
 // Redux Store
 import { useDispatch } from "react-redux";
 import { setToken, persistToken } from "../../redux/authSlice";
@@ -14,7 +17,6 @@ import MainLayout from "../layouts/MainLayout";
 
 // Styles
 import styles from "./LoginPage.module.css";
-import fetchApiCall from "../../services/apiHandler";
 
 // Page
 function LoginPage() {
@@ -55,7 +57,7 @@ function LoginPage() {
         email: usernameValue,
         password: passwordValue,
       };
-      const data = await fetchApiCall("/user/login", userCredentials);
+      const data = await fetchApiCall("login", "/user/login", userCredentials);
 
       if (isNaN(data)) {
         const token = data.body.token;
