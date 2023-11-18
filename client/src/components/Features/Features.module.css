@@ -1,6 +1,8 @@
 .features {
   display: flex;
   flex-direction: column;
+
+  margin: auto 2.5em;
 }
 
 @media (min-width: 920px) {
