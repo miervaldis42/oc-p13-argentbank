@@ -4,6 +4,7 @@ import { NavLink, useLocation } from "react-router-dom";
 // Redux
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../redux/authSlice";
+import { resetUserState } from "../../redux/userSlice";
 
 // Routing
 import routesList from "../../router/routesList";
@@ -24,6 +25,7 @@ function Navbar() {
 
   const logoutHandler = () => {
     dispatch(logout());
+    dispatch(resetUserState());
   };
 
   return (
