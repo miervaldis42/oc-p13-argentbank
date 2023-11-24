@@ -36,7 +36,8 @@ To run the project :
 1. Use `npm run start-dev` or `npm run start` in a terminal linked to the project root folder
 2. After running the previous commands, the following will happen :
 
-   - React will open a tab with the website in it at `http://localhost:3000`
+   - Dependencies at the root of the project, in the frontend and backend will be installed
+   - React will open the website in the browser at `http://localhost:3000`
    - Node server will be running at `http://localhost:3001`
    - Swagger documentation can be seen at `http://localhost:3001/api-docs/`
 
