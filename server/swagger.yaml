@@ -1,7 +1,7 @@
 swagger: "2.0"
 info:
-  title: Bank Argent API documentation
-  description: Contains all available API endpoints in this codebase
+  title: Bank Argent API Documentation
+  description: Contains all available API endpoints of the project
   version: "1.0.0"
   termsOfService: "http://swagger.io/terms/"
 host: localhost:3001
@@ -52,7 +52,7 @@ paths:
         "200":
           description: Signup Successfully
           schema:
-            $ref: "#/definitions/UserAPIResponse"
+            $ref: "#/definitions/UserResponse"
         "400":
           description: Invalid Fields
         "500":
@@ -68,7 +68,7 @@ paths:
       parameters:
         - in: header
           name: Authorization
-          description: Attach Bearer JWT token
+          description: Bearer [JWT Token]
           required: true
           type: string
       produces:
@@ -77,7 +77,7 @@ paths:
         "200":
           description: User profile retrieved successully
           schema:
-            $ref: "#/definitions/UserAPIResponse"
+            $ref: "#/definitions/UserResponse"
         "400":
           description: Invalid Fields
         "500":
@@ -92,7 +92,7 @@ paths:
       parameters:
         - in: header
           name: Authorization
-          description: Attach Bearer JWT token
+          description: Bearer [JWT Token]
           required: true
           type: string
         - in: body
@@ -107,7 +107,7 @@ paths:
         "200":
           description: User profile retrieved successully
           schema:
-            $ref: "#/definitions/UserAPIResponse"
+            $ref: "#/definitions/UserResponse"
         "400":
           description: Invalid Fields
         "500":
@@ -119,11 +119,11 @@ paths:
       tags:
         - Accounts Module
       summary: All User Accounts
-      description: Retrieve all accounts of a given user
+      description: Retrieve all Accounts of a given User
       parameters:
         - in: header
           name: Authorization
-          description: JWT Token Bearer
+          description: Bearer [JWT Token]
           required: true
           type: string
         - in: path
@@ -153,7 +153,7 @@ paths:
       parameters:
         - in: header
           name: Authorization
-          description: JWT Token Bearer
+          description: Bearer [JWT Token]
           required: true
           type: string
         - in: path
@@ -192,7 +192,7 @@ paths:
       parameters:
         - in: header
           name: Authorization
-          description: JWT Token Bearer
+          description: Bearer [JWT Token]
           required: true
           type: string
         - name: accountId
@@ -228,7 +228,7 @@ paths:
       parameters:
         - in: header
           name: Authorization
-          description: JWT Token Bearer
+          description: Bearer [JWT Token]
           required: true
           type: string
         - name: accountId
@@ -245,7 +245,7 @@ paths:
         "200":
           description: 1 Transaction for a given Account Retrieved Successfully
           schema:
-            $ref: "#/definitions/TransactionAPIResponse"
+            $ref: "#/definitions/TransactionResponse"
         "400":
           description: Invalid Fields
         "404":
@@ -254,55 +254,17 @@ paths:
             $ref: "#/definitions/NotFoundResponse"
         "500":
           description: Internal Server Error
-    post:
-      security:
-        - Bearer: []
-      tags:
-        - Transactions Module
-      summary: 1 Account Transaction
-      description: Create 1 Transaction in A Given Account
-      parameters:
-        - in: header
-          name: Authorization
-          description: Attach Bearer JWT token
-          required: true
-          type: string
-        - name: accountId
-          in: path
-          required: true
-          type: string
-        - name: transactionId
-          in: path
-          required: true
-          type: string
-        - name: transaction
-          in: body
-          description: Create a Transaction with given information
-          required: true
-          schema:
-            $ref: "#/definitions/newTransaction"
-      produces:
-        - application/json
-      responses:
-        "200":
-          description: Transaction Created Successfully
-          schema:
-            $ref: "#/definitions/TransactionAPIResponse"
-        "400":
-          description: Invalid Fields
-        "500":
-          description: Internal Server Error
     put:
       security:
         - Bearer: []
       tags:
         - Transactions Module
-      summary: Transactions
-      description: API for Transactions
+      summary: Informations of 1 Transaction
+      description: Add, Modify & Delete the informations of a transaction
       parameters:
         - in: header
           name: Authorization
-          description: Attach Bearer JWT token
+          description: Bearer [JWT Token]
           required: true
           type: string
         - name: accountId
@@ -313,19 +275,19 @@ paths:
           in: path
           required: true
           type: string
-        - name: transaction
+        - name: transactionNewInfo
           in: body
           description: Create transaction with given information
           required: true
           schema:
-            $ref: "#/definitions/newTransaction"
+            $ref: "#/definitions/TransactionInfo"
       produces:
         - application/json
       responses:
         "200":
-          description: Transaction Updated Successfully
+          description: Transaction Information Updated Successfully
           schema:
-            $ref: "#/definitions/TransactionAPIResponse"
+            $ref: "#/definitions/TransactionResponse"
         "400":
           description: Invalid Fields
         "500":
@@ -415,30 +377,8 @@ definitions:
         type: string
         description: Any comments the user wants to attach to the transaction
         example: Favorite Bakery !
-  newTransaction:
+  TransactionInfo:
     properties:
-      userId:
-        type: string
-        example: 123
-      accountId:
-        type: number
-        example: A1233
-      date:
-        type: string
-        example: June 20th, 2020
-      description:
-        type: string
-        example: Golden Sun Bakery
-      amount:
-        type: string
-        example: $5.00
-      balance:
-        type: string
-        description: Remaining balance after deduising the current transaction
-        example: $2,000
-      type:
-        type: string
-        example: Electronic
       category:
         type: string
         enum:
@@ -448,7 +388,7 @@ definitions:
         type: string
         description: Any comments the user wants to attach to the transaction
         example: Favorite Bakery !
-  UserAPIResponse:
+  UserResponse:
     type: object
     properties:
       status:
@@ -516,7 +456,7 @@ definitions:
         type: array
         items:
           $ref: "#/definitions/Transaction"
-  TransactionAPIResponse:
+  TransactionResponse:
     type: object
     properties:
       status:
