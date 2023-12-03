@@ -149,7 +149,7 @@ paths:
       tags:
         - Accounts Module
       summary: 1 User Account
-      description: Retrieve all accounts of a given user
+      description: Retrieve all Accounts of a given User
       parameters:
         - in: header
           name: Authorization
@@ -181,21 +181,21 @@ paths:
             $ref: "#/definitions/NotFoundResponse"
         "500":
           description: Internal Server Error
-  /transactions/{accountId}:
+  /transactions/{userId}:
     get:
       security:
         - Bearer: []
       tags:
         - Transactions Module
-      summary: All Transactions of An Account
-      description: Retrieve all Transactions based on its related Account ID
+      summary: All Transactions of an User
+      description: Retrieve all User ID based Transactions and grouped by account(s)
       parameters:
         - in: header
           name: Authorization
           description: Bearer [JWT Token]
           required: true
           type: string
-        - name: accountId
+        - name: userId
           in: path
           required: true
           type: string
@@ -206,9 +206,9 @@ paths:
         - application/json
       responses:
         "200":
-          description: All Account Transactions Retrieved Successfully
+          description: All User Transactions Retrieved Successfully
           schema:
-            $ref: "#/definitions/AccountTransactionsResponse"
+            $ref: "#/definitions/UserTransactionsResponse"
         "400":
           description: Invalid Fields
         "404":
@@ -444,7 +444,7 @@ definitions:
         type: string
       account:
         $ref: "#/definitions/Account"
-  AccountTransactionsResponse:
+  UserTransactionsResponse:
     type: object
     properties:
       status:
@@ -455,7 +455,51 @@ definitions:
       items:
         type: array
         items:
-          $ref: "#/definitions/Transaction"
+          type: object
+          properties:
+            accountId:
+              type: string
+              example: A123
+            date:
+              type: string
+              example: December 3rd, 2023
+            transactions:
+              type: array
+              items:
+                type: object
+                properties:
+                  transactionId:
+                    type: string
+                    example: T123
+                  description:
+                    type: string
+                    example: Golden Sun Bakery
+                  amount:
+                    type: string
+                    example: $5.00
+                  balance:
+                    type: string
+                    description: Remaining balance after deduising the current transaction
+                    example: $2,000
+                  type:
+                    type: string
+                    example: Electronic
+                  category:
+                    type: string
+                    enum:
+                      [
+                        Food,
+                        Bank fees,
+                        Savings,
+                        Travels,
+                        Entertainment,
+                        Transportations,
+                      ]
+                    example: Food
+                  notes:
+                    type: string
+                    description: Any comments the user wants to attach to the transaction
+                    example: Favorite Bakery !
   TransactionResponse:
     type: object
     properties:
